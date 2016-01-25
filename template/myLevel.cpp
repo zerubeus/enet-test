@@ -55,7 +55,14 @@ int MyLevel::initializeServer(int port = ANVPORT)
 	}
 
 	AnnEngine::Instance()->getPlayer()->setPosition(AnnVect3(0,0,2.1));
-	
+
+	AnnDebug() << "---- Server ----";
+	net.getLocalIP(localIP);
+	ss << "Server IP: " << localIP;
+	ss.str("");
+	ss << "Port: " << port;
+	AnnDebug() << ss.str();
+	return netNS::NET_OK;
 }
 
 void MyLevel::runLogic()

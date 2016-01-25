@@ -45,6 +45,7 @@ class MyLevel : public AnnAbstractLevel
 private:
 	Net net;
 	int error;
+	char localIP[16];
 public:
 	MyLevel();
 	void load();
