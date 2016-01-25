@@ -123,7 +123,7 @@ int Net::createServer(int port, int protocol)
     localAddr.sin_addr.s_addr = htonl(INADDR_ANY);    // listen on all addresses
 
     // bind socket
-    if (bind(sock, (SOCKADDR *)&localAddr, sizeof(localAddr)) == SOCKET_ERROR)
+	if (_WINSOCK2API_::bind(sock, (SOCKADDR *)&localAddr, sizeof(localAddr)) == SOCKET_ERROR)
     {
         status = WSAGetLastError();          // get detailed error
         return ((status << 16) + NET_BIND_FAILED);
