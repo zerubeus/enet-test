@@ -30,6 +30,9 @@ void MyLevel::load()
 	levelLighting.push_back(light);
 
 	engine->setAmbiantLight(Ogre::ColourValue::White/2);
+	engine->getPlayer()->setPosition(AnnVect3(0,0,2.1));
+
+	engine->resetPlayerPhysics();
 
 }
 
