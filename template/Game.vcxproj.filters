@@ -6,6 +6,7 @@
       <Filter>pch</Filter>
     </ClCompile>
     <ClCompile Include="myLevel.cpp" />
+    <ClCompile Include="net.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="plugins.cfg" />
@@ -20,5 +21,10 @@
       <Filter>pch</Filter>
     </ClInclude>
     <ClInclude Include="myLevel.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="net.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
 </Project>
