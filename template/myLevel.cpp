@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "myLevel.hpp"
+#include "net.h"
 
 MyLevel::MyLevel() : AnnAbstractLevel()
 {
@@ -30,11 +31,31 @@ void MyLevel::load()
 	levelLighting.push_back(light);
 
 	engine->setAmbiantLight(Ogre::ColourValue::White/2);
-	engine->getPlayer()->setPosition(AnnVect3(0,0,2.1));
+	
 
 
 	engine->resetPlayerPhysics();
 
+}
+
+int MyLevel::initializeServer(int port = ANVPORT)
+{
+	std::stringstream ss;
+	if(port < netNS::MIN_PORT)
+	{
+		AnnDebug() << "Invalid port number";
+		return netNS::NET_ERROR;
+	}
+	// ------ init network stuff -------
+	error = net.createServer(port, netNS::UDP);
+	if(error != netNS::NET_OK)
+	{
+		AnnDebug() << net.getError(error);
+		return netNS::NET_ERROR;
+	}
+
+	AnnEngine::Instance()->getPlayer()->setPosition(AnnVect3(0,0,2.1));
+	
 }
 
 void MyLevel::runLogic()

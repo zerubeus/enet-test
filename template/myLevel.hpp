@@ -7,6 +7,17 @@ using namespace Annwvyn;
 const int ANVPORT = 48161;
 const int MAX_PLAYERS = 2;
 
+struct ShipStc // state information for a player 
+{
+	float X;
+	float Y;
+	float radians;
+	float rotation;
+	short score;
+	UCHAR playerN;
+	UCHAR flags;
+};
+
 struct ToServerStc // stuff sent to a server from a client
 {
 	UCHAR buttons;
@@ -22,7 +33,7 @@ struct ToClientStc // stuff sent to a client from the server
 
 struct Player
 {
-	//ShipStc shipData; TODO
+	ShipStc shipData; 
 	//TorpedoStc torepedoData; TODO
 };
 
@@ -31,9 +42,13 @@ struct Player
 //from AnnAbstractLevel
 class MyLevel : public AnnAbstractLevel
 {
+private:
+	Net net;
+	int error;
 public:
 	MyLevel();
 	void load();
+	int initializeServer(int port);
 	void runLogic();
 };
 
